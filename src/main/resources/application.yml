@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: koyeb_template
+  datasource:
+   url: jdbc:postgresql://${DB_HOST:localhost}/${DATABASE}
+   username: ${DB_USER}
+   password: ${DB_PASSWORD}
+   driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+     ddl-auto: update
+    properties:
+     hibernate:
+       dialect: org.hibernate.dialect.PostgreSQLDialect
