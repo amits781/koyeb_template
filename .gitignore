@@ -23,9 +23,8 @@
 hs_err_pid*
 replay_pid*
 .project
-.settings/org.springframework.ide.eclipse.prefs
-.project
-.project
-./target
 /target
 target/classes/application.properties
+.factorypath
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.common.project.facet.core.xml
