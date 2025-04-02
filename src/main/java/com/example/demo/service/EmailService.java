@@ -18,14 +18,14 @@ public class EmailService {
 
   public EmailResponseBody processEmail(EmailRequestBody request) {
     EmailResponseBody emailResponse;
-    log.info("Receive email body: {}", request);
+    log.info("Receive email body: {}", request.getSubject());
     if(request.getFrom().contains("icici")) {
       emailResponse = processorIcici.processEmail(request);
     } else {
       emailResponse = EmailResponseBody.builder().tnxAmount(null).tnxCategory(null).tnxDate(null)
       .tnxDetails(null).tnxSource(null).tnxId(null).build();
     }
-    log.info("Finish processing email body, response: {}", emailResponse);
+    log.info("Finish processing email body, response: {}", emailResponse.getTnxId());
     return emailResponse;
   }
 }
