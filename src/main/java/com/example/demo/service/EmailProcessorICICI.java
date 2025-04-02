@@ -34,9 +34,7 @@ public class EmailProcessorICICI implements EmailProcessor {
     String details = String.join(", ",
         CollectionUtils.isEmpty(extractedToken.getOrDefault("MERCHANT", null)) ? List.of()
             : extractedToken.getOrDefault("MERCHANT", null));
-    String source = String.join(", ",
-        CollectionUtils.isEmpty(extractedToken.getOrDefault("BANK", null)) ? List.of()
-            : extractedToken.getOrDefault("BANK", null));
+    String source = getSourceName(extractedToken);
     String id = "tnx_id";
 
     ZonedDateTime gmtDateTime = ZonedDateTime.parse(request.getDate(), formatter);
@@ -47,6 +45,19 @@ public class EmailProcessorICICI implements EmailProcessor {
         EmailResponseBody.builder().tnxAmount(amount).tnxCategory(category).tnxDate(date)
             .tnxDetails(details).tnxSource(source).tnxId(id).build();
     return emailResponse;
+  }
+
+  private String getSourceName(Map<String, List<String>> extractedToken) {
+    String bankName = String.join(", ",
+        CollectionUtils.isEmpty(extractedToken.getOrDefault("BANK", null)) ? List.of()
+            : extractedToken.getOrDefault("BANK", null));
+    String cardType = String.join(", ",
+        CollectionUtils.isEmpty(extractedToken.getOrDefault("CARD_TYPE", null)) ? List.of()
+            : extractedToken.getOrDefault("CARD_TYPE", null));
+    String cardNumber = String.join(", ",
+        CollectionUtils.isEmpty(extractedToken.getOrDefault("CARD_NUMBER", null)) ? List.of()
+            : extractedToken.getOrDefault("CARD_NUMBER", null));
+    return String.join(" | ", bankName, cardType, cardNumber);
   }
 
 }

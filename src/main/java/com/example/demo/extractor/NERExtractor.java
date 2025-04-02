@@ -34,7 +34,7 @@ public class NERExtractor {
       WhitespaceTokenizer tokenizer = WhitespaceTokenizer.INSTANCE;
       NameFinderME nameFinder = new NameFinderME(customModel);
       String[] tokens = tokenizer.tokenize(text);
-      log.info("{}", tokens.length);
+      log.info("Extracted token length:{}", tokens.length);
       Span[] nameSpans = nameFinder.find(tokens);
       Map<String, List<String>> entitySet = new HashMap<String, List<String>>();
       for (Span span : nameSpans) {
@@ -42,12 +42,11 @@ public class NERExtractor {
             String.join(" ", Arrays.copyOfRange(tokens, span.getStart(), span.getEnd()));
         entity = entity.trim();
         String spanType = span.getType().trim();
-        log.info("{} | {}", entity, spanType);
         List<String> entities = entitySet.getOrDefault(spanType, new ArrayList<String>());
         entities.add(entity);
         entitySet.put(spanType, entities);
       }
-      log.info("NERExtractor::extractEntities: Exit processing data: {}", entitySet);
+      log.info("NERExtractor::extractEntities: Exit processing data.");
       return entitySet;
     } catch (Exception e) {
       log.error("Error Occured during text extraction: {}", e.getMessage());
