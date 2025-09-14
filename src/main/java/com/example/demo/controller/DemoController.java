@@ -12,4 +12,14 @@ public class DemoController {
   public ResponseEntity<String> sayHello() {
     return new ResponseEntity<String>("Hello World!", HttpStatus.OK);
   }
+  @GetMapping(value = "/metrics", produces = "text/plain")
+    public String metrics() {
+        int value = fetchValueFromHttp(); // your HTTP call
+        return "my_cost_http_metric " + value + "\n";
+    }
+
+    private int fetchValueFromHttp() {
+        // call your API and return some number
+        return 42;
+    }
 }
