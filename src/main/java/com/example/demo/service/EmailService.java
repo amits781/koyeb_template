@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import com.example.demo.dto.EmailRequestBody;
 import com.example.demo.dto.EmailResponseBody;
@@ -10,21 +9,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmailService {
 
-  private EmailProcessorICICI processorIcici;
+  private EmailProcessorGeneric processorGeneric;
 
-  public EmailService(@Lazy EmailProcessorICICI processorIcici) {
-    this.processorIcici = processorIcici;
+  public EmailService(EmailProcessorGeneric processorGeneric) {
+    this.processorGeneric = processorGeneric;
   }
 
-  public EmailResponseBody processEmail(EmailRequestBody request) {
-    EmailResponseBody emailResponse;
+  public EmailResponseBody processEmailV2(EmailRequestBody request) {
     log.info("Receive email body: {}", request.getSubject());
-    if(request.getFrom().contains("icici")) {
-      emailResponse = processorIcici.processEmail(request);
-    } else {
-      emailResponse = EmailResponseBody.builder().tnxAmount(null).tnxCategory(null).tnxDate(null)
-      .tnxDetails(null).tnxSource(null).tnxId(null).build();
-    }
+    EmailResponseBody emailResponse;
+    emailResponse = processorGeneric.processEmail(request);
     log.info("Finish processing email body, response: {}", emailResponse.getTnxId());
     return emailResponse;
   }

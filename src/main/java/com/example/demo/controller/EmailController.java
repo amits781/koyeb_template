@@ -23,14 +23,14 @@ public class EmailController {
     this.headerValidator = headerValidator;
   }
 
-  @PostMapping("/email/process")
-  public ResponseEntity<Object> saveEmployee(@RequestHeader(name = "secret-key") String secretKey,
-      @RequestBody EmailRequestBody request) {
+  @PostMapping("/v2/email/process")
+  public ResponseEntity<Object> parseEmailV2(@RequestHeader(name = "secret-key") String secretKey,
+                                             @RequestBody EmailRequestBody request) {
     if (!headerValidator.validateSecret(secretKey)) {
       throw new ServiceAPIException("Invalid secret key", HttpStatus.UNAUTHORIZED);
     }
-    return ResponseHandler.generateResponse(service.processEmail(request), HttpStatus.OK,
-        "Success");
+    return ResponseHandler.generateResponse(service.processEmailV2(request), HttpStatus.OK,
+            "Success");
   }
 
 }

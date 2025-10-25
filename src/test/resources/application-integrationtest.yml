@@ -1,0 +1,2 @@
+app:
+ my-secret: ${SECRET_KEY:12345}

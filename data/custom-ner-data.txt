@@ -1,0 +1,7 @@
+<START:BANK> state bank of india <END> dear customer, your a/c <START:ACCOUNT_NUMBER> xxxxx266404 <END> has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>. avl bal rs 47,30,864.02.-<START:BANK> sbi <END>
+<START:BANK> state bank of india <END> dear customer, your a/c xxxxx266404 has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>.
+<START:BANK> state bank of india <END> dear customer, your a/c xxxxx266404 has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>.
+<START:BANK> state bank of india <END> dear customer, your a/c xxxxx266404 has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>.
+<START:BANK> state bank of india <END> dear customer, your a/c xxxxx266404 has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>.
+<START:BANK> state bank of india <END> dear customer, your a/c xxxxx266404 has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>.
+<START:BANK> state bank of india <END> dear customer, your a/c xxxxx266404 has a debit by transfer of <START:AMOUNT> rs 236.00 <END> on <START:DATE> 17/10/25 <END>.
