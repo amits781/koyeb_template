@@ -47,7 +47,7 @@ public class GeminiApiService {
   }
 
   private GeminiNERDataResponse extractText(String response) {
-    System.out.println("Response from Gemini:" + response);
+    // System.out.println("Response from Gemini:" + response);
     try {
       JsonNode rootNode = objectMapper.readTree(response);
       String regex = rootNode.path("candidates").get(0) // First candidate
