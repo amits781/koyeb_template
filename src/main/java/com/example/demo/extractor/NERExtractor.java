@@ -1,9 +1,7 @@
 package com.example.demo.extractor;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -78,11 +76,11 @@ public class NERExtractor {
     ObjectStream<String> lineStream =
         new PlainTextByLineStream(inputStreamFactory, StandardCharsets.UTF_8);
     ObjectStream<NameSample> sampleStream = new NameSampleDataStream(lineStream);
-    try (BufferedReader reader = new BufferedReader(
-        new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))) {
-      System.out.println("---- Contents of custom-ner-data.txt ----");
-      reader.lines().forEach(System.out::println);
-    }
+    // try (BufferedReader reader = new BufferedReader(
+    // new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))) {
+    // System.out.println("---- Contents of custom-ner-data.txt ----");
+    // reader.lines().forEach(System.out::println);
+    // }
     TokenNameFinderFactory factory = new TokenNameFinderFactory();
 
     // Ensure Training Parameters are set properly
