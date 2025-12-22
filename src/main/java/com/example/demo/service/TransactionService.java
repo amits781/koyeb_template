@@ -20,11 +20,29 @@ public class TransactionService {
     }
 
     public EmailResponseBody processEmail(EmailRequestBody request) {
-        return parsers.stream()
-                .filter(parser -> parser.canParse(request))
-                .findFirst()
-                .map(parser -> parser.parse(request))
-            .orElseThrow(() -> new ServiceAPIException("No parser found for this email format",
-                HttpStatus.BAD_REQUEST));
+      // 1. Find the correct parser (or throw if none matches)
+      BankEmailParser parser = parsers.stream().filter(p -> p.canParse(request)).findFirst()
+          .orElseThrow(() -> new ServiceAPIException("No parser found for this email format",
+              HttpStatus.BAD_REQUEST));
+
+      // 2. Parse the email
+      EmailResponseBody response = parser.parse(request);
+
+      // 3. VALIDATION: Check if mandatory fields are missing or contain default "Unknown" values
+      if (isInvalid(response.getTnxSource()) || isInvalid(response.getTnxAmount())) {
+        throw new ServiceAPIException(
+            "Parsing incomplete: Failed to extract Source or Amount from email.",
+            HttpStatus.UNPROCESSABLE_ENTITY);
+      }
+
+      return response;
+    }
+
+
+    /**
+     * Helper to check if a field is Null, Empty, or contains "Unknown" (from parser defaults)
+     */
+    private boolean isInvalid(String value) {
+      return value == null || value.trim().isEmpty() || value.toLowerCase().contains("unknown");
     }
 }
