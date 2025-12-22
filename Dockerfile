@@ -15,6 +15,6 @@ FROM azul/zulu-openjdk-alpine:21
 # Copy the built jar from the build stage
 COPY --from=build /opt/app/target/koyeb_template*.jar koyeb_template.jar
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT ["java", "-jar", "koyeb_template.jar"]
