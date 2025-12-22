@@ -12,4 +12,5 @@ public class EmailRequestBody {
   private String subject;
   private String body;
   private String date;
+  private String messageId;
 }
