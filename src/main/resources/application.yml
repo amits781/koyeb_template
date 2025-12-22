@@ -5,4 +5,3 @@ spring:
     name: koyeb_template
 app:
  my-secret: ${SECRET_KEY:12345}
- gemini-api-key: ${GEMMINI_API_KEY:abcdf-uuyt}
